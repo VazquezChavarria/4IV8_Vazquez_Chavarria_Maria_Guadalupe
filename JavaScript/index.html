@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problemas de Algoritmos - Muy Básico</title>
+    
+    <!-- CSS externo (estilos muy simples) -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="contenedor">
+        <header>
+            <h1>Problemas de Algoritmos</h1>
+            
+        </header>
+        
+        <!-- Problema 1 -->
+        <div class="problema">
+            <h2>1) Inversión en el banco (2% mensual)</h2>
+            <p class="info">Escribe el dinero que vas a invertir.</p>
+            
+            <label for="capital1">Capital a invertir ($):</label>
+            <input type="text" id="capital1" placeholder="Ejemplo: 1000">
+            
+            <button onclick="calcularProblema1()">Calcular</button>
+            <div id="resultado1" class="resultado"></div>
+        </div>
+        
+        <!-- Problema 2 -->
+        <div class="problema">
+            <h2>2) Sueldo del vendedor + comisiones</h2>
+            <p class="info">Escribe sueldo base y las 3 ventas.</p>
+            
+            <label for="sueldoBase">Sueldo base ($):</label>
+            <input type="text" id="sueldoBase" placeholder="Ejemplo: 5000">
+            
+            <label for="venta1">Venta 1 ($):</label>
+            <input type="text" id="venta1" placeholder="Ejemplo: 1200">
+            
+            <label for="venta2">Venta 2 ($):</label>
+            <input type="text" id="venta2" placeholder="Ejemplo: 800">
+            
+            <label for="venta3">Venta 3 ($):</label>
+            <input type="text" id="venta3" placeholder="Ejemplo: 1500">
+            
+            <button onclick="calcularProblema2()">Calcular</button>
+            <div id="resultado2" class="resultado"></div>
+        </div>
+        
+        <!-- Problema 3 -->
+        <div class="problema">
+            <h2>3) Descuento del 15% en la tienda</h2>
+            <p class="info">Escribe el total de tu compra.</p>
+            
+            <label for="compra">Total de la compra ($):</label>
+            <input type="text" id="compra" placeholder="Ejemplo: 2500">
+            
+            <button onclick="calcularProblema3()">Calcular</button>
+            <div id="resultado3" class="resultado"></div>
+        </div>
+        
+        <!-- Problema 4 -->
+        <div class="problema">
+            <h2>4) Calificación final de Algoritmos</h2>
+            <p class="info">Escribe tus calificaciones.</p>
+            
+            <label for="parcial1">Parcial 1:</label>
+            <input type="text" id="parcial1" placeholder="Ejemplo: 8.5">
+            
+            <label for="parcial2">Parcial 2:</label>
+            <input type="text" id="parcial2" placeholder="Ejemplo: 9.0">
+            
+            <label for="parcial3">Parcial 3:</label>
+            <input type="text" id="parcial3" placeholder="Ejemplo: 7.8">
+            
+            <label for="examen">Examen final:</label>
+            <input type="text" id="examen" placeholder="Ejemplo: 9.5">
+            
+            <label for="trabajo">Trabajo final:</label>
+            <input type="text" id="trabajo" placeholder="Ejemplo: 10">
+            
+            <button onclick="calcularProblema4()">Calcular calificación</button>
+            <div id="resultado4" class="resultado"></div>
+        </div>
+        
+        <!-- Problema 5 -->
+        <div class="problema">
+            <h2>5) Porcentaje de hombres y mujeres</h2>
+            <p class="info">Escribe cuántos hombres y cuántas mujeres hay.</p>
+            
+            <label for="hombres">Cantidad de hombres:</label>
+            <input type="text" id="hombres" placeholder="Ejemplo: 12">
+            
+            <label for="mujeres">Cantidad de mujeres:</label>
+            <input type="text" id="mujeres" placeholder="Ejemplo: 18">
+            
+            <button onclick="calcularProblema5()">Calcular porcentajes</button>
+            <div id="resultado5" class="resultado"></div>
+        </div>
+        
+        <!-- Problema 6 -->
+        <div class="problema">
+            <h2>6) Calcular la edad de una persona</h2>
+            <p class="info">Escribe tu año de nacimiento (4 números).</p>
+            
+            <label for="anioNacimiento">Año de nacimiento:</label>
+            <input type="text" id="anioNacimiento" placeholder="Ejemplo: 2005" maxlength="4">
+            
+            <button onclick="calcularProblema6()">Calcular edad</button>
+            <div id="resultado6" class="resultado"></div>
+        </div>
+       
+    </div>
+
+    <!-- JavaScript externo (MUY básico para principiantes) -->
+    <script src="script.js"></script>
+</body>
+</html>

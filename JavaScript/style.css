@@ -1,0 +1,86 @@
+/* CSS MUY BÁSICO para principiantes */
+
+body {
+    font-family: Arial, sans-serif;
+    background: white;
+    margin: 0;
+    padding: 20px;
+    color: black;
+}
+
+header {
+    background: green;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.contenedor {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.problema {
+    background: white;
+    border: 3px solid green;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.problema h2 {
+    background: green;
+    color: white;
+    padding: 10px;
+    margin: -15px -15px 15px -15px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid green;
+    font-size: 16px;
+}
+
+button {
+    background: limegreen;
+    color: black;
+    border: none;
+    padding: 12px;
+    font-size: 18px;
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: darkgreen;
+    color: white;
+}
+
+.resultado {
+    margin-top: 15px;
+    padding: 15px;
+    background: #e6ffe6;
+    border: 2px solid green;
+    display: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.info {
+    background: #ffffcc;
+    padding: 10px;
+    margin-bottom: 15px;
+}
