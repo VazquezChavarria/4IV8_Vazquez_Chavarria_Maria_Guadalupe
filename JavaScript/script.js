@@ -1,7 +1,3 @@
-// =============================================
-// JS MUY BÁSICO para principiantes
-// Todo explicado con comentarios en español
-// =============================================
 
 // Función sencilla para mostrar el resultado en la pantalla
 function mostrarResultado(id, texto) {
