@@ -102,7 +102,7 @@ async function cargarUsuarios() {
 
         if (resp.data.length === 0) {
             tablaUsuarios.style.display = 'none';
-            cargaUsuarios.textContent = 'No hay usuarios registrados.';
+            cargaUsuarios.textContent = 'No hay clientes registrados.';
             cargaUsuarios.style.display = 'block';
         } else {
             tablaUsuarios.style.display = 'table';
@@ -124,7 +124,7 @@ async function cargarUsuarios() {
         }
         contadorUsuarios.textContent = `${resp.count}`;
     } catch (error) {
-        mostrarNotificacion('Error al cargar usuarios: ' + error.message, 'error');
+        mostrarNotificacion('Error al cargar clientes: ' + error.message, 'error');
     }
 }
 
@@ -183,14 +183,14 @@ formUsuario.addEventListener('submit', async (e) => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(datos)
             });
-            mostrarNotificacion('Usuario actualizado', 'exito');
+            mostrarNotificacion('Cliente actualizado', 'exito');
         } else {
             await fetchAPI('/api/usuarios', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(datos)
             });
-            mostrarNotificacion('Usuario creado', 'exito');
+            mostrarNotificacion('Cliente registrado', 'exito');
         }
         limpiarFormUsuario();
         cargarUsuarios();
@@ -217,7 +217,7 @@ async function editarUsuario(id) {
 }
 
 function confirmarEliminarUsuario(id, nombre) {
-    if (confirm(`¿Eliminar a "${nombre}" y todas sus compras?`)) {
+    if (confirm(`¿Eliminar a "${nombre}" y todos sus pedidos?`)) {
         eliminarUsuario(id);
     }
 }
@@ -225,7 +225,7 @@ function confirmarEliminarUsuario(id, nombre) {
 async function eliminarUsuario(id) {
     try {
         await fetchAPI(`/api/usuarios/${id}`, { method: 'DELETE' });
-        mostrarNotificacion('Usuario eliminado', 'exito');
+        mostrarNotificacion('Cliente eliminado', 'exito');
         if (inputUsuarioId.value === String(id)) limpiarFormUsuario();
         cargarUsuarios();
         cargarSelectUsuarios();
@@ -241,7 +241,7 @@ async function verComprasUsuario(id) {
         const resp = await fetchAPI(`/api/compras/usuario/${id}`);
         const { usuario, compras, total_compras, total_gastado } = resp.data;
 
-        let mensaje = `${usuario.nombre} tiene ${total_compras} compra(s).\nTotal gastado: $${total_gastado}\n\n`;
+        let mensaje = `${usuario.nombre} tiene ${total_compras} pedido(s).\nTotal gastado: $${total_gastado}\n\n`;
         compras.forEach(c => {
             mensaje += `- ${c.producto} x${c.cantidad} = $${parseFloat(c.total).toFixed(2)}\n`;
         });
@@ -278,7 +278,7 @@ async function cargarProductos() {
 
         if (resp.data.length === 0) {
             tablaProductos.style.display = 'none';
-            cargaProductos.textContent = 'No hay productos registrados.';
+            cargaProductos.textContent = 'No hay servicios registrados.';
             cargaProductos.style.display = 'block';
         } else {
             tablaProductos.style.display = 'table';
@@ -299,7 +299,7 @@ async function cargarProductos() {
         }
         contadorProductos.textContent = `${resp.count}`;
     } catch (error) {
-        mostrarNotificacion('Error al cargar productos: ' + error.message, 'error');
+        mostrarNotificacion('Error al cargar servicios: ' + error.message, 'error');
     }
 }
 
@@ -358,14 +358,14 @@ formProducto.addEventListener('submit', async (e) => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(datos)
             });
-            mostrarNotificacion('Producto actualizado', 'exito');
+            mostrarNotificacion('Servicio actualizado', 'exito');
         } else {
             await fetchAPI('/api/productos', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(datos)
             });
-            mostrarNotificacion('Producto creado', 'exito');
+            mostrarNotificacion('Servicio agregado', 'exito');
         }
         limpiarFormProducto();
         cargarProductos();
@@ -400,7 +400,7 @@ function confirmarEliminarProducto(id, nombre) {
 async function eliminarProducto(id) {
     try {
         await fetchAPI(`/api/productos/${id}`, { method: 'DELETE' });
-        mostrarNotificacion('Producto eliminado', 'exito');
+        mostrarNotificacion('Servicio eliminado', 'exito');
         if (inputProductoId.value === String(id)) limpiarFormProducto();
         cargarProductos();
         cargarSelectProductos();
@@ -467,7 +467,7 @@ async function cargarCompras() {
 
         if (resp.data.length === 0) {
             tablaCompras.style.display = 'none';
-            cargaCompras.textContent = 'No hay compras registradas.';
+            cargaCompras.textContent = 'No hay pedidos registrados.';
             cargaCompras.style.display = 'block';
         } else {
             tablaCompras.style.display = 'table';
@@ -491,7 +491,7 @@ async function cargarCompras() {
         }
         contadorCompras.textContent = `${resp.count}`;
     } catch (error) {
-        mostrarNotificacion('Error al cargar compras: ' + error.message, 'error');
+        mostrarNotificacion('Error al cargar pedidos: ' + error.message, 'error');
     }
 }
 
@@ -545,7 +545,7 @@ formCompra.addEventListener('submit', async (e) => {
         });
 
         mostrarNotificacion(
-            `Compra registrada: ${resp.data.usuario} compró ${resp.data.cantidad}x ${resp.data.producto} ($${resp.data.total})`,
+            `Pedido registrado: ${resp.data.usuario} compró ${resp.data.cantidad}x ${resp.data.producto} ($${resp.data.total})`,
             'exito'
         );
         formCompra.reset();
@@ -557,7 +557,7 @@ formCompra.addEventListener('submit', async (e) => {
 });
 
 function confirmarEliminarCompra(id) {
-    if (confirm('¿Eliminar esta compra?')) {
+    if (confirm('¿Eliminar este pedido?')) {
         eliminarCompra(id);
     }
 }
@@ -565,7 +565,7 @@ function confirmarEliminarCompra(id) {
 async function eliminarCompra(id) {
     try {
         await fetchAPI(`/api/compras/${id}`, { method: 'DELETE' });
-        mostrarNotificacion('Compra eliminada', 'exito');
+        mostrarNotificacion('Pedido eliminado', 'exito');
         cargarCompras();
     } catch (error) {
         mostrarNotificacion(error.message, 'error');

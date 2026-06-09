@@ -1,30 +1,27 @@
 // ============================================================
-// PRÁCTICA 3 - PNT: Rutas de Productos (Express Router)
+// EditPro: Router de Servicios
 // ============================================================
-// CRUD completo para la tabla de productos.
-// Estructura idéntica al router de usuarios.
+// CRUD completo para la tabla de servicios de edición (productos).
+// Ejemplos: Edición de Reel, Video YouTube, Spot Publicitario,
+// Color Grading, Motion Graphics, etc.
 //
-// IMPORTANTE: Al eliminar un producto, la FK con ON DELETE RESTRICT
-// impedirá la eliminación si tiene compras asociadas.
-// Esto protege la integridad de los datos históricos.
+// NOTA: No se puede eliminar un servicio si tiene pedidos asociados
+// (ON DELETE RESTRICT protege el historial de pedidos).
 // ============================================================
 
 const express = require('express');
 const router = express.Router();
 const db = require('../DB/database');
 
-// ============================================================
-// FUNCIÓN: Validar datos de producto
-// ============================================================
 function validarProducto(datos) {
     const errores = [];
 
     if (!datos.nombre || typeof datos.nombre !== 'string' || datos.nombre.trim().length < 2) {
-        errores.push('El nombre del producto es obligatorio (mínimo 2 caracteres)');
+        errores.push('El nombre del servicio es obligatorio (mínimo 2 caracteres)');
     }
 
     if (datos.precio === undefined || datos.precio === null || datos.precio === '') {
-        errores.push('El precio es obligatorio');
+        errores.push('El precio del servicio es obligatorio');
     } else {
         const precio = parseFloat(datos.precio);
         if (isNaN(precio) || precio <= 0) {
@@ -35,56 +32,50 @@ function validarProducto(datos) {
     return errores;
 }
 
-// ============================================================
-// GET /api/productos — Listar todos
-// ============================================================
+// GET /api/productos — Listar todos los servicios
 router.get('/', async (req, res) => {
     try {
-        const [productos] = await db.execute(
+        const [servicios] = await db.execute(
             'SELECT id, nombre, precio, created_at, updated_at FROM productos ORDER BY id ASC'
         );
 
         res.json({
             status: 'success',
-            data: productos,
-            count: productos.length
+            data: servicios,
+            count: servicios.length
         });
 
     } catch (error) {
-        console.error('Error al listar productos:', error.message);
+        console.error('Error al listar servicios:', error.message);
         res.status(500).json({ status: 'error', message: 'Error interno del servidor' });
     }
 });
 
-// ============================================================
-// GET /api/productos/:id — Obtener uno
-// ============================================================
+// GET /api/productos/:id — Obtener un servicio
 router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const [productos] = await db.execute(
+        const [servicios] = await db.execute(
             'SELECT id, nombre, precio, created_at, updated_at FROM productos WHERE id = ?',
             [id]
         );
 
-        if (productos.length === 0) {
+        if (servicios.length === 0) {
             return res.status(404).json({
                 status: 'error',
-                message: `Producto con ID ${id} no encontrado`
+                message: `Servicio con ID ${id} no encontrado`
             });
         }
 
-        res.json({ status: 'success', data: productos[0] });
+        res.json({ status: 'success', data: servicios[0] });
 
     } catch (error) {
-        console.error('Error al obtener producto:', error.message);
+        console.error('Error al obtener servicio:', error.message);
         res.status(500).json({ status: 'error', message: 'Error interno del servidor' });
     }
 });
 
-// ============================================================
-// POST /api/productos — Crear nuevo
-// ============================================================
+// POST /api/productos — Crear nuevo servicio
 router.post('/', async (req, res) => {
     try {
         const errores = validarProducto(req.body);
@@ -107,14 +98,12 @@ router.post('/', async (req, res) => {
         res.status(201).json({ status: 'success', data: nuevo[0] });
 
     } catch (error) {
-        console.error('Error al crear producto:', error.message);
+        console.error('Error al crear servicio:', error.message);
         res.status(500).json({ status: 'error', message: 'Error interno del servidor' });
     }
 });
 
-// ============================================================
-// PUT /api/productos/:id — Actualizar
-// ============================================================
+// PUT /api/productos/:id — Actualizar servicio
 router.put('/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -123,7 +112,7 @@ router.put('/:id', async (req, res) => {
         if (existente.length === 0) {
             return res.status(404).json({
                 status: 'error',
-                message: `Producto con ID ${id} no encontrado`
+                message: `Servicio con ID ${id} no encontrado`
             });
         }
 
@@ -147,28 +136,25 @@ router.put('/:id', async (req, res) => {
         res.json({ status: 'success', data: actualizado[0] });
 
     } catch (error) {
-        console.error('Error al actualizar producto:', error.message);
+        console.error('Error al actualizar servicio:', error.message);
         res.status(500).json({ status: 'error', message: 'Error interno del servidor' });
     }
 });
 
-// ============================================================
-// DELETE /api/productos/:id — Eliminar
-// ============================================================
-// Si el producto tiene compras asociadas, MySQL rechazará
-// la eliminación gracias a ON DELETE RESTRICT.
+// DELETE /api/productos/:id — Eliminar servicio
+// No se puede eliminar si tiene pedidos asociados (ON DELETE RESTRICT)
 router.delete('/:id', async (req, res) => {
     try {
         const { id } = req.params;
 
-        const [producto] = await db.execute(
+        const [servicio] = await db.execute(
             'SELECT id, nombre FROM productos WHERE id = ?', [id]
         );
 
-        if (producto.length === 0) {
+        if (servicio.length === 0) {
             return res.status(404).json({
                 status: 'error',
-                message: `Producto con ID ${id} no encontrado`
+                message: `Servicio con ID ${id} no encontrado`
             });
         }
 
@@ -177,21 +163,19 @@ router.delete('/:id', async (req, res) => {
         res.json({
             status: 'success',
             data: {
-                eliminado: producto[0],
-                mensaje: `Producto "${producto[0].nombre}" eliminado`
+                eliminado: servicio[0],
+                mensaje: `Servicio "${servicio[0].nombre}" eliminado correctamente`
             }
         });
 
     } catch (error) {
-        // Error de FK: el producto tiene compras asociadas
-        // MySQL error code 1451 = Cannot delete or update a parent row
         if (error.code === 'ER_ROW_IS_REFERENCED_2' || error.errno === 1451) {
             return res.status(409).json({
                 status: 'error',
-                message: 'No se puede eliminar el producto porque tiene compras asociadas'
+                message: 'No se puede eliminar el servicio porque tiene pedidos asociados'
             });
         }
-        console.error('Error al eliminar producto:', error.message);
+        console.error('Error al eliminar servicio:', error.message);
         res.status(500).json({ status: 'error', message: 'Error interno del servidor' });
     }
 });
