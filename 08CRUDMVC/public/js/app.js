@@ -260,6 +260,7 @@ btnCancelarUsuario.addEventListener('click', limpiarFormUsuario);
 const formProducto = document.getElementById('form-producto');
 const inputProductoId = document.getElementById('producto-id');
 const inputProductoNombre = document.getElementById('producto-nombre');
+const selectProductoFormato = document.getElementById('producto-formato');
 const inputProductoPrecio = document.getElementById('producto-precio');
 const formTituloProducto = document.getElementById('form-titulo-producto');
 const btnGuardarProducto = document.getElementById('btn-guardar-producto');
@@ -270,7 +271,8 @@ const cargaProductos = document.getElementById('carga-productos');
 const contadorProductos = document.getElementById('contador-productos');
 const errorProductoNombre = document.getElementById('error-producto-nombre');
 const errorProductoPrecio = document.getElementById('error-producto-precio');
-
+const errorProductoFormato = document.getElementById('error-producto-formato');
+// 1. REEMPLAZA TODA LA FUNCIÓN DE CARGAR PRODUCTOS:
 async function cargarProductos() {
     try {
         const resp = await fetchAPI('/api/productos');
@@ -289,6 +291,7 @@ async function cargarProductos() {
                     <td>${p.id}</td>
                     <td>${escapeHtml(p.nombre)}</td>
                     <td>$${parseFloat(p.precio).toFixed(2)}</td>
+                    <td><span class="badge-formato">${escapeHtml(p.formato || '-')}</span></td>
                     <td>
                         <button class="btn-editar" onclick="editarProducto(${p.id})">Editar</button>
                         <button class="btn-eliminar" onclick="confirmarEliminarProducto(${p.id}, '${escapeHtml(p.nombre)}')">Eliminar</button>
@@ -307,7 +310,9 @@ function validarFormProducto() {
     let ok = true;
     const nombre = inputProductoNombre.value.trim();
     const precio = inputProductoPrecio.value;
+    const formato = selectProductoFormato.value;
 
+    // Validación del nombre
     if (!nombre || nombre.length < 2) {
         errorProductoNombre.textContent = 'Mínimo 2 caracteres';
         inputProductoNombre.classList.add('input-error');
@@ -317,6 +322,7 @@ function validarFormProducto() {
         inputProductoNombre.classList.remove('input-error');
     }
 
+    // Validación del precio
     if (!precio || parseFloat(precio) <= 0) {
         errorProductoPrecio.textContent = 'Precio debe ser mayor que 0';
         inputProductoPrecio.classList.add('input-error');
@@ -326,8 +332,19 @@ function validarFormProducto() {
         inputProductoPrecio.classList.remove('input-error');
     }
 
-    return ok;
+    // Validación del formato
+    if (!formato || formato === "") {
+        errorProductoFormato.textContent = 'Selecciona un formato válido';
+        selectProductoFormato.classList.add('input-error');
+        ok = false;
+    } else {
+        errorProductoFormato.textContent = '';
+        selectProductoFormato.classList.remove('input-error');
+    }
+
+    return ok; // Bloquea el envío si "ok" es false
 }
+
 
 function limpiarFormProducto() {
     formProducto.reset();
@@ -339,6 +356,8 @@ function limpiarFormProducto() {
     errorProductoPrecio.textContent = '';
     inputProductoNombre.classList.remove('input-error');
     inputProductoPrecio.classList.remove('input-error');
+    errorProductoFormato.textContent = '';
+    selectProductoFormato.classList.remove('input-error');
 }
 
 formProducto.addEventListener('submit', async (e) => {
@@ -347,7 +366,8 @@ formProducto.addEventListener('submit', async (e) => {
 
     const datos = {
         nombre: inputProductoNombre.value.trim(),
-        precio: parseFloat(inputProductoPrecio.value)
+        precio: parseFloat(inputProductoPrecio.value),
+        formato: selectProductoFormato.value
     };
     const id = inputProductoId.value;
 
@@ -381,6 +401,7 @@ async function editarProducto(id) {
         inputProductoId.value = resp.data.id;
         inputProductoNombre.value = resp.data.nombre;
         inputProductoPrecio.value = resp.data.precio;
+        selectProductoFormato.value =resp.data.formato || '';
         formTituloProducto.textContent = 'Editar Producto';
         btnGuardarProducto.textContent = 'Actualizar';
         btnCancelarProducto.style.display = 'inline-block';

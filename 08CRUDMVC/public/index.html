@@ -96,6 +96,23 @@
                             <input type="number" id="producto-precio" placeholder="Ej: 1500.00" min="0.01" step="0.01" required>
                             <span class="error" id="error-producto-precio"></span>
                         </div>
+                        <div class="campo">
+                            <label for="producto-formato">Formato de video:</label>
+                        <select id="producto-formato" required>
+                            <option value="">-- Seleccionar formato--</option>
+                            <optgroup label="Vertical (estilo celular)">
+                                <option value="Vertical 9:16 - 1080x1920px (Tik Tok / Reels / Shorts)">Tik Tok - Reels - Shorts - 1080x1920px (9:16)</option>
+                            </optgroup>
+                            <optgroup label="Horizontal (estilo cine)">
+                                <option value="Horizontal 16:9 - 1920x1080px HD (YouTube / cine)">YouTube HD - 1920x1080px (16:9)</option>
+                                <option value="Horizontal 16:9 - 1280x720px HD (YouTube / cine)">YouTube HD - 1280x720px (16:9)</option>
+                            </optgroup>
+                            <optgroup label="Cuadrado (Estilo Redes)">
+                                <option value="Cuadrado 1:1 - 1080x1080px  (Feed Instagram / Anuncios)">Feed Instagram - Anuncios - 1080x1080px (1:1)</option>
+                            </optgroup>
+                        </select>
+                            <span class="error" id="error-producto-formato"></span>
+                        </div>
                     </div>
                     <div class="botones">
                         <button type="submit" id="btn-guardar-producto">Guardar servicio</button>
@@ -108,14 +125,15 @@
                 <h2>Servicios disponibles<span id="contador-productos" class="badge badge-neutral"></span></h2>
                 <p id="carga-productos">Cargando...</p>
                 <table id="tabla-productos" style="display:none;">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Servicio</th>
-                            <th>Precio</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
+        <thead>
+             <tr>
+                <th>ID</th>
+                <th>Servicio</th>
+                <th>Precio</th>
+                <th>Formato</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
                     <tbody id="tbody-productos"></tbody>
                 </table>
             </section>
