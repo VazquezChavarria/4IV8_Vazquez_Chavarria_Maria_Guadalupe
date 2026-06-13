@@ -1,50 +1,53 @@
-
 :root {
-    --color-primario: #2563eb;
-    --color-primario-hover: #1d4ed8;
+    /* --- ADAPTACIÓN A TU PALETA DE FIGMA --- */
+    --color-primario: #4180ab;        /* Azul oscuro principal */
+    --color-primario-hover: #2e6287;  /* Azul oscuro un poco más intenso */
+    --color-fondo: #4180ab;           /* Tu azul de fondo general */
+    --color-tarjeta: #ffffff;         /* Blanco para los contenedores/secciones */
+    --color-borde: #bdd1de;           /* Azul claro suave para líneas y divisiones */
+    --color-texto: #4180ab;           /* Azul oscuro para que el texto resalte */
+    --color-texto-claro: #8ab3cf;     /* Azul medio para textos secundarios o th */
+    
+    /* Variables de apoyo para mantener el diseño original */
     --color-peligro: #dc2626;
     --color-peligro-hover: #b91c1c;
     --color-exito: #16a34a;
-    --color-fondo: #f8fafc;
-    --color-tarjeta: #ffffff;
-    --color-borde: #e2e8f0;
-    --color-texto: #1e293b;
-    --color-texto-claro: #64748b;
     --radio-borde: 8px;
-    --sombra: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --sombra: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background-color: var(--color-fondo);
+    background-color: var(--color-fondo); /* Aplica tu azul de fondo general */
     color: var(--color-texto);
     line-height: 1.6;
 }
 
 /* ---- Header con pestañas ---- */
 header {
-    background: linear-gradient(135deg, #0f172a, #1e40af);
+    background: linear-gradient(135deg, #2e6287, #4180ab); /* Degradado con tus tonos azules */
     color: white;
     padding: 1.5rem 1.5rem 0;
     text-align: center;
+    border-bottom: 2px solid var(--color-borde);
 }
 
-header h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
-header p { font-size: 0.875rem; opacity: 0.9; margin-bottom: 1rem; }
+header h1 { font-size: 1.5rem; margin-bottom: 0.25rem; color: #ffffff; }
+header p { font-size: 0.875rem; opacity: 0.9; margin-bottom: 1rem; color: #e4ebf0; }
 
-/* NUEVO: Pestañas de navegación */
+/* Pestañas de navegación */
 .tabs {
     display: flex;
     justify-content: center;
-    gap: 0;
+    gap: 4px;
 }
 
 .tab {
     padding: 0.6rem 1.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.8);
     border: none;
     cursor: pointer;
     font-size: 0.9rem;
@@ -54,13 +57,14 @@ header p { font-size: 0.875rem; opacity: 0.9; margin-bottom: 1rem; }
 }
 
 .tab:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.3);
     color: white;
 }
 
 .tab.active {
-    background: var(--color-fondo);
-    color: var(--color-texto);
+    background: #ffffff; /* Sincroniza perfectamente con el fondo de las tarjetas */
+    color: var(--color-primario);
+    font-weight: bold;
 }
 
 /* ---- Layout ---- */
@@ -73,7 +77,7 @@ main {
 footer {
     text-align: center;
     padding: 1rem;
-    color: var(--color-texto-claro);
+    color: #e4ebf0; /* Cambiado a tono claro para que sea legible sobre el fondo azul */
     font-size: 0.8rem;
     margin-top: 2rem;
 }
@@ -82,7 +86,8 @@ footer {
 .formulario-section,
 .tabla-section,
 .info-api {
-    background: var(--color-tarjeta);
+    background: var(--color-tarjeta); /* Fondo blanco */
+    border: 4px solid var(--color-borde); /* Borde suave azul claro */
     border-radius: var(--radio-borde);
     box-shadow: var(--sombra);
     padding: 1.5rem;
@@ -93,6 +98,7 @@ footer {
 .tabla-section h2 {
     font-size: 1.1rem;
     margin-bottom: 1rem;
+    color: var(--color-texto);
 }
 
 /* Panel API */
@@ -115,7 +121,7 @@ footer {
 
 .api-url { color: var(--color-texto-claro); flex: 1; }
 
-/* Badges */
+/* Badges de la API ajustados con variaciones de tus colores claros */
 .badge {
     display: inline-block;
     padding: 0.15rem 0.5rem;
@@ -125,17 +131,15 @@ footer {
     text-transform: uppercase;
 }
 
-.badge-get { background: #dbeafe; color: #1e40af; }
+.badge-get { background: #e4ebf0; color: #4180ab; }
 .badge-post { background: #dcfce7; color: #166534; }
 .badge-put { background: #fef3c7; color: #92400e; }
 .badge-delete { background: #fecaca; color: #991b1b; }
-.badge-neutral { background: #f1f5f9; color: #475569; }
+.badge-neutral { background: #bdd1de; color: #4180ab; }
 .badge-success { background: #dcfce7; color: #166534; }
 .badge-error { background: #fecaca; color: #991b1b; }
 
-/* ---- NUEVO: Grid de campos del formulario ---- */
-/* En P1/P2 los campos van uno debajo del otro.
-   Aquí usamos CSS Grid para ponerlos lado a lado. */
+/* ---- Grid de campos del formulario ---- */
 .campos-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -154,29 +158,33 @@ footer {
     margin-bottom: 0.3rem;
     font-weight: 600;
     font-size: 0.85rem;
+    color: var(--color-texto);
 }
 
 .campo input,
 .campo select {
     width: 100%;
     padding: 0.55rem 0.7rem;
-    border: 1px solid var(--color-borde);
+    border: 2px solid var(--color-borde);
     border-radius: var(--radio-borde);
     font-size: 0.9rem;
-    transition: border-color 0.2s;
-    background: white;
+    transition: all 0.2s;
+    background: #e4ebf0; /* Fondo gris/azul muy claro en reposo */
+    color: var(--color-texto);
 }
 
 .campo input:focus,
 .campo select:focus {
     outline: none;
     border-color: var(--color-primario);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    background: #ffffff; /* Cambia a blanco al escribir */
+    box-shadow: 0 0 0 3px rgba(65, 128, 171, 0.2);
 }
 
 .campo input.input-error,
 .campo select.input-error {
     border-color: var(--color-peligro);
+    background-color: #fecaca;
 }
 
 .error {
@@ -189,24 +197,24 @@ footer {
 
 /* ---- Tabla ---- */
 table { width: 100%; border-collapse: collapse; }
-thead { background-color: var(--color-fondo); }
+thead { background-color: #e4ebf0; } /* Fondo claro para la cabecera */
 
 th, td {
     padding: 0.6rem 0.75rem;
     text-align: left;
-    border-bottom: 1px solid var(--color-borde);
+    border-bottom: 2px solid #e4ebf0;
     font-size: 0.85rem;
 }
 
 th {
-    font-weight: 600;
-    color: var(--color-texto-claro);
+    font-weight: 700;
+    color: var(--color-texto); /* Cambiado a tu azul principal para mejor contraste */
     text-transform: uppercase;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     letter-spacing: 0.05em;
 }
 
-tbody tr:hover { background-color: #f1f5f9; }
+tbody tr:hover { background-color: #e4ebf0; } /* Resalta filas con tu color suave */
 
 /* ---- Botones ---- */
 .botones { display: flex; gap: 0.75rem; margin-top: 0.75rem; }
@@ -217,8 +225,8 @@ button {
     border-radius: var(--radio-borde);
     font-size: 0.85rem;
     cursor: pointer;
-    transition: background-color 0.2s;
-    font-weight: 500;
+    transition: background-color 0.2s, transform 0.1s;
+    font-weight: bold;
 }
 
 #btn-guardar-usuario,
@@ -234,8 +242,14 @@ button {
     background-color: var(--color-primario-hover);
 }
 
-.btn-secundario { background-color: #94a3b8; color: white; }
-.btn-secundario:hover { background-color: #64748b; }
+.btn-secundario { 
+    background-color: #bdd1de; /* Gris/azul claro intermedio */
+    color: var(--color-texto); 
+}
+.btn-secundario:hover { 
+    background-color: var(--color-texto-claro);
+    color: white;
+}
 
 .btn-editar {
     background-color: var(--color-primario);
@@ -262,6 +276,10 @@ button {
     margin-right: 0.25rem;
 }
 .btn-ver:hover { background-color: #15803d; }
+
+button:active {
+    transform: scale(0.98);
+}
 
 /* ---- Notificaciones ---- */
 .notificacion {

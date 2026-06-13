@@ -1,0 +1,215 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+html, body {
+    background-color: #4180ab; /* Fondo general azul oscuro */
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    color: #4180ab;
+}
+
+/* --- ENCABEZADO --- */
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    color: #ffffff; /* Texto del título principal en blanco */
+    font-size: 2rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* --- CONTENEDOR PRINCIPAL (LAYOUT GRID DE DOS COLUMNAS) --- */
+main {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+/* Cambio a 2 columnas cuando la pantalla sea lo suficientemente ancha */
+@media (min-width: 768px) {
+    main {
+        grid-template-columns: 350px 1fr;
+        align-items: start;
+    }
+}
+
+/* --- ESTILOS COMUNES PARA SECCIONES (TARJETAS BLANCAS) --- */
+.formulario-section, .table-section {
+    background-color: #ffffff; /* Fondo blanco */
+    border: 5px solid #8ab3cf;  /* Borde azul medio */
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.formulario-section h2, .table-section h2 {
+    font-size: 1.3rem;
+    color: #4180ab;
+    border-bottom: 3px solid #e4ebf0;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* --- FORMULARIO Y CAMPOS DE ENTRADA --- */
+#form-usuario {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.campo label {
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"] {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 2px solid #bdd1de; /* Borde azul claro suave */
+    border-radius: 8px;
+    background-color: #e4ebf0; /* Fondo gris/azul muy claro */
+    color: #4180ab;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: #4180ab;
+    background-color: #ffffff;
+}
+
+/* Mensajes de error debajo de los inputs */
+.error {
+    color: #d9534f; /* Color de alerta/error estándar */
+    font-size: 0.8rem;
+    text-align: left;
+    min-height: 1rem;
+    display: block;
+}
+
+/* --- BOTONES DEL CRUD --- */
+button {
+    width: 100%;
+    padding: 0.7rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#btn-guardar {
+    background-color: #4180ab; /* Azul oscuro */
+    color: #ffffff;
+}
+
+#btn-guardar:hover {
+    background-color: #2e6287;
+}
+
+.btn-secundario {
+    background-color: #e4ebf0;
+    color: #4180ab;
+    border: 2px solid #bdd1de;
+    margin-top: -0.5rem; /* Une visualmente al botón de arriba si aparece */
+}
+
+.btn-secundario:hover {
+    background-color: #bdd1de;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* --- TABLA DE USUARIOS Y MENSAJES DE ESTADO --- */
+#mensaje-carga, #mensaje-vacio {
+    text-align: center;
+    padding: 2rem;
+    font-style: italic;
+    color: #8ab3cf;
+}
+
+#tabla-usuarios {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+}
+
+#tabla-usuarios th {
+    background-color: #8ab3cf; /* Encabezados en azul medio */
+    color: #ffffff;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+/* Redondear esquinas superiores de la tabla */
+#tabla-usuarios th:first-child { border-radius: 8px 0 0 0; }
+#tabla-usuarios th:last-child { border-radius: 0 8px 0 0; }
+
+#tabla-usuarios td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #e4ebf0;
+    color: #4180ab;
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+/* Alternancia de color en filas de la tabla */
+#tbody-usuarios tr:nth-child(even) {
+    background-color: #e4ebf0; /* Fondo intermitente suave */
+}
+
+/* Estilo para los mini-botones de acción (Editar / Eliminar) dentro de la tabla */
+#tabla-usuarios button {
+    width: auto;
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    margin: 0 0.2rem;
+    border-radius: 4px;
+}
+
+/* Botón Editar dentro de la tabla */
+#tabla-usuarios .btn-editar {
+    background-color: #bdd1de;
+    color: #4180ab;
+}
+
+#tabla-usuarios .btn-editar:hover {
+    background-color: #8ab3cf;
+    color: #ffffff;
+}
+
+/* Botón Eliminar dentro de la tabla */
+#tabla-usuarios .btn-eliminar {
+    background-color: #e4ebf0;
+    color: #4180ab;
+    border: 1px solid #bdd1de;
+}
+
+#tabla-usuarios .btn-eliminar:hover {
+    background-color: #4180ab;
+    color: #ffffff;
+}

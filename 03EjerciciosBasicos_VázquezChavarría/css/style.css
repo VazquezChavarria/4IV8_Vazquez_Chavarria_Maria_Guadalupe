@@ -1,0 +1,125 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+    background-color: #4180ab; /* Fondo general azul oscuro */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* Contenedor principal del ejercicio (Efecto tarjeta) */
+.Ejercicio01 {
+    background-color: #ffffff; /* Fondo blanco para alta legibilidad */
+    border: 6px solid #8ab3cf;  /* Borde grueso en azul medio */
+    border-radius: 30px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 550px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Título / Instrucción del Formulario */
+label {
+    display: block;
+    color: #4180ab; /* Texto en azul oscuro */
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Contenedor y alineación de la tabla */
+.container-table {
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px; /* Espaciado vertical entre filas */
+}
+
+/* Celdas de la tabla */
+.table td {
+    padding: 0.5rem;
+    vertical-align: middle;
+    color: #4180ab; /* Texto de etiquetas en azul oscuro */
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+/* Alinear inputs a la derecha */
+.table td:last-child {
+    text-align: right;
+    width: 50%;
+}
+
+/* Estilo general para las cajas de texto (Inputs) */
+input[type="text"] {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border: 2px solid #bdd1de; /* Borde azul claro suave */
+    border-radius: 8px;
+    background-color: #e4ebf0; /* Fondo gris/azul muy claro */
+    color: #4180ab;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #4180ab; /* Resalta al dar clic */
+}
+
+/* Estilo específico para el campo de salida (Readonly) */
+input[readonly] {
+    background-color: #bdd1de; /* Fondo un poco más oscuro para denotar bloqueo */
+    border-color: #8ab3cf;
+    font-weight: bold;
+    cursor: not-allowed;
+}
+
+/* Estilo general para los Botones */
+input[type="button"] {
+    width: 100%;
+    padding: 0.7rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Botón de Calcular (Principal) */
+input[name="enviar"] {
+    background-color: #4180ab; /* Fondo azul oscuro */
+    color: #ffffff; /* Texto blanco */
+}
+
+input[name="enviar"]:hover {
+    background-color: #2e6287; /* Oscurece un poco al pasar el cursor */
+}
+
+/* Botón de Borrar (Secundario) */
+input[name="delete"] {
+    background-color: #e4ebf0; /* Fondo muy claro */
+    color: #4180ab; /* Texto azul oscuro */
+    border: 2px solid #bdd1de;
+}
+
+input[name="delete"]:hover {
+    background-color: #bdd1de;
+}
+
+/* Efecto de presión en botones */
+input[type="button"]:active {
+    transform: scale(0.98);
+}

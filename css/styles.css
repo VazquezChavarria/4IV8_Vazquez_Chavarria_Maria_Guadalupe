@@ -1,0 +1,173 @@
+/* --- Reseteo de Márgenes y Tipografía Base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #121212; /* Fondo oscuro de alto contraste */
+    color: #e0e0e0;           /* Tipografía clara */
+    font-family: 'Dosis', sans-serif;
+    line-height: 1.6;
+}
+
+/* --- Carátula / Header --- */
+.portfolio-header {
+    background: linear-gradient(135deg, #1f1f1f 0%, #0a0a0a 100%);
+    border-bottom: 3px solid #4180ab; /* Detalle de color en azul técnico */
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+.header-container .institution {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #4180ab;
+}
+
+.header-container .school {
+    font-size: 1rem;
+    color: #a0a0a0;
+    margin-bottom: 1rem;
+}
+
+.header-container h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.student-badge {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.student-badge p {
+    font-size: 1.1rem;
+    margin: 0.3rem 0;
+}
+
+/* --- Layout Principal --- */
+.portfolio-main {
+    max-width: 1000px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+}
+
+/* Contenedores Limpios y Minimalistas */
+.container-box {
+    background-color: #1a1a1a;
+    border: 1px solid #2d2d2d;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.portfolio-section h2 {
+    font-size: 1.8rem;
+    color: #ffffff;
+    border-left: 4px solid #4180ab;
+    padding-left: 0.8rem;
+    margin-bottom: 1.2rem;
+}
+
+/* Grid de Aprendizajes */
+.learning-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1xl));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.learning-item {
+    background-color: #222222;
+    border: 1px solid #333;
+    padding: 1.2rem;
+    border-radius: 6px;
+}
+
+.learning-item h3 {
+    color: #4180ab;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.learning-item p {
+    font-size: 0.95rem;
+    color: #cccccc;
+    text-align: justify;
+}
+
+/* --- Menú de Prácticas (Cards Navigables) --- */
+.instruction-text {
+    color: #a0a0a0;
+    margin-bottom: 1.5rem;
+}
+
+.practices-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.menu-card {
+    display: block;
+    background-color: #222222;
+    border: 1px solid #333;
+    padding: 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #e0e0e0;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+}
+
+.menu-card:hover {
+    border-color: #4180ab;
+    transform: translateY(-3px);
+    background-color: #282828;
+}
+
+.card-number {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    transition: color 0.2s ease;
+}
+
+.menu-card:hover .card-number {
+    color: rgba(65, 128, 171, 0.2);
+}
+
+.menu-card h3 {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    padding-right: 2rem;
+    text-align: left;
+}
+
+.menu-card p {
+    font-size: 0.9rem;
+    color: #aaaaaa;
+    text-align: left;
+}
+
+/* --- Footer --- */
+.portfolio-footer {
+    text-align: center;
+    padding: 2rem;
+    color: #666666;
+    font-size: 0.9rem;
+    border-top: 1px solid #222;
+}

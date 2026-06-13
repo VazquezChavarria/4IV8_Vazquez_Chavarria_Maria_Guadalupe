@@ -1,0 +1,116 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+html, body {
+    background-color: #4180ab; /* Fondo general azul oscuro */
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* Contenedor principal que agrupa las tarjetas */
+.container {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Espaciado uniforme entre problemas */
+}
+
+/* Tarjeta individual para cada problema */
+.problema-container {
+    background-color: #ffffff; /* Fondo blanco para contraste */
+    border: 5px solid #8ab3cf;  /* Borde grueso en azul medio */
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Títulos principales (Problema 1, 2, 3) */
+.problema-titulo {
+    color: #4180ab; /* Azul oscuro */
+    font-size: 1.6rem;
+    border-bottom: 3px solid #e4ebf0;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Redacción de las instrucciones del problema */
+h3 {
+    color: #4180ab;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+/* Contenedor interno del formulario de cada problema */
+.problema-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Cajas de texto e inputs de números */
+.problema-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #bdd1de; /* Borde azul claro */
+    border-radius: 8px;
+    background-color: #e4ebf0; /* Fondo gris/azul muy claro */
+    color: #4180ab;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.problema-input:focus {
+    border-color: #4180ab;
+    background-color: #ffffff;
+}
+
+/* --- ESTILOS ESPECÍFICOS PARA EL PROBLEMA 2 (TABLAS) --- */
+.tablas {
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.problema-table {
+    border-collapse: collapse;
+    background-color: #ffffff;
+}
+
+.problema-table th {
+    background-color: #8ab3cf; /* Encabezado de tabla en azul medio */
+    color: #ffffff;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    border-radius: 4px 4px 0 0;
+}
+
+.problema-table td {
+    padding: 0.4rem;
+    color: #4180ab;
+    font-weight: bold;
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+/* Ajuste fino para los inputs pequeños dentro de las tablas */
+.problema-table .problema-input {
+    padding: 0.4rem;
+    text-align: center;
+}
+
+/* --- BOTONES DE ACCIÓN --- */
+.problema-button {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.7
+}
